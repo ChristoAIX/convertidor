@@ -1,3 +1,4 @@
+//codigo para que funcione local
 <?php
 
 function conexion()
