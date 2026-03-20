@@ -9,7 +9,6 @@ background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
 min-height:100vh;
 display:flex;
 flex-direction:column;
-justify-content:flex-start;
 align-items:center;
 color:white;
 padding-top:60px;
@@ -26,6 +25,7 @@ text-shadow:0 0 10px rgba(255,215,0,0.5);
 .contenedor{
 background:#1c1c1c;
 padding:40px;
+flex:1;
 width:900px;
 max-width:95%;
 border-radius:15px;
@@ -150,6 +150,17 @@ overflow-y:auto;
 font-size:14px;
 }
 
+footer{
+width:100%;
+text-align:center;
+padding:15px;
+margin-top:20px;
+color:#FFD700;
+font-size:14px;
+opacity:0.7;
+border-top:1px solid rgba(255,215,0,0.2);
+background:#0f0f0f;
+}
 @media (max-width:1024px){
 
 .contenedor{
