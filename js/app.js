@@ -1,6 +1,7 @@
 import { consume } from "./lib/consume.js"
 import { enviaFormRecibeJson } from "./lib/enviaFormRecibeJson.js"
 import { recibeJson } from "./lib/recibeJson.js"
+import { htmlentities } from "./lib/htmlentities.js"
 
 const formulario = document.querySelector("#formulario")
 const resultado = document.querySelector("#resultado")
@@ -24,9 +25,7 @@ async function enviar(event) {
  )
 
  const json = await respuesta.json()
-
- resultado.textContent = json.resultado
-
+ resultado.textContent = htmlentities(json.resultado)
  cargarHistorial()
 }
 
@@ -40,21 +39,27 @@ async function cargarHistorial() {
  lista.innerHTML = ""
 
  for (const item of json) {
+
+  const cantidad = htmlentities(item.cantidad)
+  const origenMoneda = htmlentities(item.origen)
+  const destinoMoneda = htmlentities(item.destino)
+  const resultadoConv = htmlentities(item.resultado)
+  const id = htmlentities(item.id)
+
   lista.innerHTML += `
    <li>
-    ${item.cantidad} ${item.origen} → ${item.destino} = ${item.resultado}
-    <button data-id="${item.id}">Eliminar</button>
+    ${cantidad} ${origenMoneda} → ${destinoMoneda} = ${resultadoConv}
+    <button data-id="${id}">Eliminar</button>
    </li>
   `
  }
-
  for (const boton of document.querySelectorAll("button[data-id]")) {
   boton.addEventListener("click", eliminar)
  }
 }
 
 async function eliminar(event) {
- const id = event.target.dataset.id
+ const id = htmlentities(event.target.dataset.id)
 
  const respuesta = await consume(
   recibeJson("php/eliminar.php?id=" + id)
@@ -84,16 +89,17 @@ async function cargarMonedas() {
   } catch {
    nombre = moneda
   }
+  const codigo = htmlentities(moneda)
+  const nombreSeguro = htmlentities(nombre)
 
   origen.innerHTML += `
-   <option value="${moneda}">
-    ${nombre} (${moneda})
+   <option value="${codigo}">
+    ${nombreSeguro} (${codigo})
    </option>
   `
-
   destino.innerHTML += `
-   <option value="${moneda}">
-    ${nombre} (${moneda})
+   <option value="${codigo}">
+    ${nombreSeguro} (${codigo})
    </option>
   `
  }

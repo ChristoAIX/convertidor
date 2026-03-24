@@ -3,20 +3,23 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Convertidor de Divisas</title>
+ <title>Información de Divisas</title>
 
  <link rel="stylesheet" href="css/styles.css">
  <script type="module" src="js/lib/manejaErrores.js"></script>
 </head>
 
 <body>
-    <h1>Convertidor de Divisas</h1>
+
+<h1>Información de Divisas</h1>
+
 <header>
  <nav>
   <a href="index.html">Convertidor</a> |
   <a href="infod.html">Información de divisas</a>
  </nav>
 </header>
+
 <section class="contenedor">
 
 <form id="formulario">
@@ -24,26 +27,16 @@
  <section class="convertidor-box">
 
   <section class="campo-moneda">
-   <label for="cantidad">Cantidad / Moneda origen
-   </label>
+   <label for="moneda">Selecciona moneda</label>
 
    <section class="campo-input">
-    <input id="cantidad" name="cantidad" type="number" min="0" step="any" placeholder="0" required>
-    <select id="origen" name="origen"></select>
-   </section>
-  </section>
-
-  <section class="campo-moneda">
-   <label for="destino">Moneda destino</label>
-
-   <section class="campo-input">
-    <select id="destino" name="destino"></select>
+    <select id="moneda" name="moneda"></select>
    </section>
   </section>
 
  </section>
 
- <button type="submit">Convertir</button>
+ <button type="submit">Consultar</button>
 
 </form>
 
@@ -51,16 +44,13 @@
  <p id="resultado"></p>
 </section>
 
-<h2>Historial</h2>
-<ul id="lista"></ul>
-
 </section>
 
 <footer>
  <p>© S.A.I.C.A 2026</p>
 </footer>
 
-<script type="module" src="js/app.js"></script>
+<script type="module" src="js/divisas.js"></script>
 
 </body>
 </html>

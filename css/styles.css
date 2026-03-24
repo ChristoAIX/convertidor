@@ -11,10 +11,30 @@ display:flex;
 flex-direction:column;
 align-items:center;
 color:white;
-padding-top:60px;
+padding-top:20px;
 }
 
-h1{
+header{
+ width:100%;
+ background:#111;
+ padding:10px;
+ text-align:center;
+ border-bottom:1px solid rgba(255,215,0,0.2);
+ margin-bottom:15px;
+}
+
+nav a{
+ color:#FFD700;
+ text-decoration:none;
+ margin:0 10px;
+ font-weight:bold;
+}
+
+nav a:hover{
+ text-decoration:underline;
+}
+
+header h1{
 font-size:42px;
 margin-bottom:30px;
 color:#FFD700;
@@ -54,7 +74,7 @@ border:1px solid #333;
 border-radius:10px;
 padding:10px;
 overflow:visible;
-gap:12px;
+gap:5px;
 }
 
 .campo-input input{
@@ -74,7 +94,8 @@ color:white;
 font-size:14px;
 outline:none;
 cursor:pointer;
-width:180px;
+width:100%;
+min-width:200px;
 }
 
 select{
@@ -88,25 +109,6 @@ color:black;
 background:white;
 }
 
-.invertir{
-width:50px;
-height:50px;
-border-radius:50%;
-border:none;
-background:#FFD700;
-color:black;
-font-size:22px;
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-transition:0.3s;
-}
-
-.invertir:hover{
-transform:rotate(180deg);
-box-shadow:0 0 10px rgba(255,215,0,0.7);
-}
 
 button{
 width:100%;
