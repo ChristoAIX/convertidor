@@ -47,7 +47,7 @@ async function enviar(e) {
  const datos = {
   moneda: formulario.moneda.value
  }
- const respuesta = await consume(fetch("php/info_divisa.php", {
+ const respuesta = await consume(fetch('./php/info_divisa.php', {
   method: "POST",
   headers: {
    "Content-Type": "application/json"
