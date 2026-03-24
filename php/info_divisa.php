@@ -1,8 +1,13 @@
 <?php
-
 header("Content-Type: application/json");
 
-$data = json_decode(file_get_contents("php://input"), true);
+
+$input = file_get_contents("php://input");
+$data = json_decode($input, true);
+
+if (!$data) {
+    $data = $_POST;
+}
 
 $moneda = $data["moneda"] ?? "";
 
