@@ -1,5 +1,5 @@
 import { consume } from "./lib/consume.js"
-import { enviaFormRecibeJson } from "./lib/enviaFormRecibeJson.js"
+import { enviaJsonRecibeJson } from "./lib/enviaJsonRecibeJson.js"
 import { recibeJson } from "./lib/recibeJson.js"
 import { htmlentities } from "./lib/htmlentities.js"
 
@@ -17,8 +17,13 @@ async function enviar(e) {
   return
  }
 
+ // ✅ AHORA ENVÍAS JSON (CORRECTO)
+ const datos = {
+  moneda: selectMoneda.value
+ }
+
  const respuesta = await consume(
-  enviaFormRecibeJson("php/info_divisa.php", formulario)
+  enviaJsonRecibeJson("php/info_divisa.php", datos)
  )
 
  const json = await respuesta.json()
@@ -34,13 +39,19 @@ async function enviar(e) {
 
  nombre = htmlentities(nombre)
 
- const pais = htmlentities(
-  nombre
-   .replace(/peso|dólar|euro|yen|libra|franco|real|rupia|won|corona|leva|lira/gi, "")
-   .replace(/de|del|la/gi, "")
-   .trim()
- )
+ // ✅ LIMPIEZA DEL NOMBRE PARA OBTENER PAÍS
+ let pais = nombre
+  .replace(/peso|dólar|euro|yen|libra|franco|real|rupia|won|corona|leva|lira/gi, "")
+  .replace(/de|del|la/gi, "")
+  .trim()
 
+ if (!pais) {
+  pais = nombre
+ }
+
+ pais = htmlentities(pais)
+
+ // ✅ OUTPUT SEGURO
  resultado.innerHTML = `
   <strong>${nombre} (${codigo})</strong><br>
   Moneda oficial asociada a ${pais}
