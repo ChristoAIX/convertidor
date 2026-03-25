@@ -17,7 +17,6 @@ async function enviar(e) {
   return
  }
 
- // ✅ AHORA ENVÍAS JSON (CORRECTO)
  const datos = {
   moneda: selectMoneda.value
  }
@@ -39,7 +38,6 @@ async function enviar(e) {
 
  nombre = htmlentities(nombre)
 
- // ✅ LIMPIEZA DEL NOMBRE PARA OBTENER PAÍS
  let pais = nombre
   .replace(/peso|dólar|euro|yen|libra|franco|real|rupia|won|corona|leva|lira/gi, "")
   .replace(/de|del|la/gi, "")
@@ -51,7 +49,6 @@ async function enviar(e) {
 
  pais = htmlentities(pais)
 
- // ✅ OUTPUT SEGURO
  resultado.innerHTML = `
   <strong>${nombre} (${codigo})</strong><br>
   Moneda oficial asociada a ${pais}

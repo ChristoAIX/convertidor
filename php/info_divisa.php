@@ -1,32 +1,14 @@
 <?php
-header("Content-Type: application/json");
 
-// 🔹 Leer JSON
-$input = file_get_contents("php://input");
-$data = json_decode($input, true);
+require_once __DIR__ . "/../lib/manejaErrores.php";
+require_once __DIR__ . "/../lib/devuelveJson.php";
+require_once __DIR__ . "/../lib/ProblemDetailsException.php";
+require_once __DIR__ . "/../lib/recibeTextoObligatorio.php";
 
-// 🔴 Validar que sea JSON válido
-if (!$data) {
- http_response_code(400);
- echo json_encode([
-  "error" => "JSON inválido"
- ]);
- exit;
-}
+$moneda = recibeTextoObligatorio("moneda");
 
-// 🔴 Validar campo requerido
-if (!isset($data["moneda"]) || trim($data["moneda"]) === "") {
- http_response_code(400);
- echo json_encode([
-  "error" => "La moneda es obligatoria"
- ]);
- exit;
-}
+$moneda = strtoupper(trim($moneda));
 
-// 🔹 Sanitizar
-$moneda = strtoupper(trim($data["moneda"]));
-
-// 🔹 Respuesta JSON
-echo json_encode([
+devuelveJson([
  "moneda" => $moneda
 ]);
